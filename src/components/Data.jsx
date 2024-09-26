@@ -182,7 +182,7 @@ export default function Data(props) {
                 receiveShadow
                 geometry={nodes.Data.geometry}
                 ref={mesh}
-                scale={0.25}
+                scale={25}
                 position={[0, 0.01, 0]}
             ><shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} transparent={true} emissiveIntensity={10.0} depthWrite={false} /></mesh>
         </group>

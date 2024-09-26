@@ -26,6 +26,16 @@ import UpLines from './UpLines';
 import { useGSAP } from '@gsap/react';
 import gsap from "gsap";
 import useWindowSize from '../hooks/useWindowSize';
+import { RetailBase } from './RetailBase';
+import Shelves from './Shelves';
+import FacilityBase from './FacilityBase';
+import HVAC from './HVAC';
+import Sewer from './Sewer';
+import FacilityFacade from './FacilityFacade';
+import RetailFloor from './RetailFloor';
+import AnimatedPerson from './AnimatedPerson';
+import Crowd from './Crowd';
+import AnimatedPath from './AnimatedPath';
  
 export default function Set({ cameraState, isMobile, isWide }) {
 
@@ -55,7 +65,7 @@ export default function Set({ cameraState, isMobile, isWide }) {
     const navigateRetail = () => {
         gsap.to(mesh.current.position, {
             x: -10,
-            z: -2, // 45 degrees in radians
+            z: 0, // 45 degrees in radians
             duration: 2,
             ease: "power1.inOut",
         });
@@ -64,6 +74,23 @@ export default function Set({ cameraState, isMobile, isWide }) {
             y: 2,
             z: 2, // 45 degrees in radians
             duration: 2,
+            ease: "power1.inOut",
+        });
+    };
+
+    
+    const navigateFacility = () => {
+        gsap.to(mesh.current.position, {
+            x: 8,
+            z: -12, // 45 degrees in radians
+            duration: 3,
+            ease: "power1.inOut",
+        });
+        gsap.to(mesh.current.scale, {
+            x: 1.5,
+            y: 1.5,
+            z: 1.5, // 45 degrees in radians
+            duration: 3,
             ease: "power1.inOut",
         });
     };
@@ -92,7 +119,15 @@ export default function Set({ cameraState, isMobile, isWide }) {
         } else if(cameraState === 2) {
             navigateAirport()
 
+        } else if(cameraState === 3) {
+            navigateRetail()
+
+        } else if(cameraState === 4) {
+            navigateFacility()
+
         } 
+        
+        
 
     }, [cameraState])
 
@@ -137,9 +172,9 @@ export default function Set({ cameraState, isMobile, isWide }) {
 
 
     return <>
-        <OrbitControls enableZoom={false} enablePan={false} enableOrbit={true} enableRotate={false} maxPolarAngle={0} minPolarAngle={Math.PI / 3} />
+        {/* <OrbitControls enableZoom={false} enablePan={false} enableOrbit={true} enableRotate={false} maxPolarAngle={0} minPolarAngle={Math.PI / 3} /> */}
 
-
+        {/* <OrbitControls   />
         <OrthographicCamera
 
             name="Camera"
@@ -152,7 +187,7 @@ export default function Set({ cameraState, isMobile, isWide }) {
             position={[10, 8, 7]}
             rotation={[-0.78, 1.1, 0.72]}
             scale={1}
-        />
+        /> */}
 
         <ambientLight intensity={2.2} />
         <directionalLight position={[1.0, 2.0, 0.0]} />
@@ -176,7 +211,16 @@ export default function Set({ cameraState, isMobile, isWide }) {
                 <Lines cameraState={cameraState} />
                 <Collaboration/>
                 <UpLines/>
-               
+                <RetailBase cameraState={cameraState}/>
+                <Shelves/>
+                <FacilityBase/>
+                <HVAC/>
+                <Sewer/>
+                <FacilityFacade  cameraState={cameraState}/>
+                <RetailFloor/>
+                <AnimatedPerson/>
+                <Crowd/>
+                <AnimatedPath/>
             </group>
 
 

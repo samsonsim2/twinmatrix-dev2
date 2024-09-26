@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GUI } from 'dat.gui'
 import * as THREE from "three";
-  
+ 
 export default function Streets(props) {
   const streets = useRef()
   const geometryBaseColor = {

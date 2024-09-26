@@ -10,6 +10,11 @@ import { useEffect, useRef, useState } from "react";
 import useWindowSize from "./hooks/useWindowSize";
 import LocalAirportIcon from "@mui/icons-material/LocalAirport";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
+import { Face } from "./components/Face";
+import { Hair } from "./components/Hair";
+import { ShoppingCart } from "@mui/icons-material";
+import HomeIcon from '@mui/icons-material/Home';
+import StoreIcon from '@mui/icons-material/Store';
 function App() {
   const buttonRef = useRef(null);
   const cameraRef = useRef(null);
@@ -40,7 +45,7 @@ function App() {
       name: "Item 1",
       title: "The future of cities is spatial-driven",
       sub: "Cities are becoming driven by smart, interconnected, spatial layers",
-      icon: <LocationCityIcon sx={{ color: "#334155" }} />,
+      icon: <HomeIcon sx={{ color: "#334155" }} />,
     },
 
     {
@@ -49,6 +54,19 @@ function App() {
       title: "Smart airports enable seamless journeys",
       sub: "Enhance airport planning and real-time operations through spatial AI",
       icon: <LocalAirportIcon sx={{ color: "#334155" }} />,
+    },
+    {
+      id:3,
+      name: "Item 3",
+      title: "Upgrade retail with spatial insights.",
+      sub: "Extract shopper behaviour in physical space and amplify retail performance.",
+      icon: <StoreIcon sx={{ color: "#334155" }}  />,
+    },{
+      id:4,
+      name: "Item 4",
+      title: "Boosting efficiency in facility management ",
+      sub: "Real-time monitoring and predictive insights streamline operations and reduce maintenance costs.",
+      icon:  <LocationCityIcon sx={{ color: "#334155" }}  />,
     },
   ];
 
@@ -60,8 +78,11 @@ function App() {
     } else if (id === "2") {
       setCameraState(2);
       console.log(size.width);
-    } else {
+    } else if (id === "3") {
       setCameraState(3);
+      console.log(size.width);
+    } else {
+      setCameraState(4);
     }
   };
 
@@ -194,9 +215,11 @@ function App() {
           position={[10, 8, 7]}
           rotation={[-0.78, 1.1, 0.72]}
           scale={1}
-        />
+        /> 
+        <OrbitControls/>
 
         <Set cameraState={cameraState} isMobile={isMobile}  isWide={isWide}/>
+    
       </Canvas>
     </main>
   );
