@@ -36,6 +36,8 @@ import RetailFloor from './RetailFloor';
 import AnimatedPerson from './AnimatedPerson';
 import Crowd from './Crowd';
 import AnimatedPath from './AnimatedPath';
+import Trees from './Trees';
+import SecondaryTrees from './SecondaryTrees';
  
 export default function Set({ cameraState, isMobile, isWide }) {
 
@@ -221,6 +223,8 @@ export default function Set({ cameraState, isMobile, isWide }) {
                 <AnimatedPerson/>
                 <Crowd/>
                 <AnimatedPath/>
+                <Trees/>
+                <SecondaryTrees/>
             </group>
 
 
