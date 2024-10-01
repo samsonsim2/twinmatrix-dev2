@@ -1,9 +1,12 @@
 
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { SpriteAnimator, useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { Color } from 'three';
 import gsap from "gsap";
+import { GUI } from 'dat.gui'
+import * as THREE from "three";
+ 
 export default function Trees(props) {
     const { nodes, materials } = useGLTF('/models/Trees.gltf')
     const [hovered, setHover] = useState(false)
@@ -13,6 +16,36 @@ export default function Trees(props) {
     const colorRef = useRef(defaultColor.clone());
     const sprite1 = useRef()
     const sprite2 = useRef()
+ 
+
+    const geometryBaseColor = {
+        trees: "#c9e4be",
+
+    }
+
+    const uniforms = {
+        color: { value: new THREE.Color(geometryBaseColor.hex) }
+    }
+
+
+    useEffect(() => {
+        const gui = new GUI({
+            width: 100
+        });
+        const colorFolder = gui.addFolder("Trees")
+        const treeColor = colorFolder.addColor(geometryBaseColor, "trees")
+        treeColor.onChange((value) => {
+            mesh.current.material.color = new THREE.Color(value)
+        })
+
+
+
+
+        return () => {
+            gui.destroy()
+        }
+    }, []);
+
 
     let scale = 0.0
     const hoverTrees = () => {
